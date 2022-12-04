@@ -1,7 +1,7 @@
 package AVLTree;
 
 public class AVLTree {
-    private class AVLNode{
+    private class AVLNode {
         private int height;
         private int value;
         private AVLNode leftChild;
@@ -12,33 +12,32 @@ public class AVLTree {
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return "Value= " + this.value;
         }
     }
 
     private AVLNode root;
 
-    public void insert(int value){
+    public void insert(int value) {
         root = insert(root, value);
     }
-    private AVLNode insert(AVLNode root, int value){
-        if (root == null){
+
+    private AVLNode insert(AVLNode root, int value) {
+        if (root == null) {
             return new AVLNode(value);
         }
-        if (value < root.value){
+        if (value < root.value) {
             root.leftChild = insert(root.leftChild, value);
-        }else {
+        } else {
             root.rightChild = insert(root.rightChild, value);
         }
 
-        root.height = Math.max(
-                height(root.leftChild),
-                height(root.rightChild)) +1;
-        balance(root);
+        setHeight(root);
 
-        return root;
+        return balance(root);
     }
+
     /*
 
     10
@@ -54,34 +53,75 @@ public class AVLTree {
 
      */
 
-    private void balance(AVLNode root){
-        if (isLeftHeavy(root)){
-            if (balanceFactor(root.leftChild) < 0){
-                System.out.println("Left rotate " + root.leftChild.value);
-            }
-            System.out.println("Right rotate " + root.value);
-        } else if (isRightHeavy(root)){
-            if (balanceFactor(root.rightChild) > 0){
-                System.out.println("Right rotate " + root.rightChild.value);
-            }
-            System.out.println("Left rotate " + root.value);
+    private AVLNode balance(AVLNode root) {
+        if (isLeftHeavy(root)) {
+            if (balanceFactor(root.leftChild) < 0)
+                root.leftChild = rotateLeft(root.leftChild);
+            return rotateRight(root);
+        } else if (isRightHeavy(root)) {
+            if (balanceFactor(root.rightChild) > 0)
+                root.rightChild = rotateRight(root.rightChild);
+            return rotateLeft(root);
         }
+        return root;
+    }
+    /*
 
+    10 root
+      20 newRoot
+        30
+    leftRotate(10)
+
+    newRoot = rotate.right
+    root.right = newRoot.left
+    newRoot.left = root
+
+    reset height of root/newRoot
+
+     */
+    private AVLNode rotateLeft(AVLNode root){
+        var newRoot = root.rightChild;
+
+        root.rightChild = newRoot.leftChild;
+        newRoot.leftChild = root;
+
+        setHeight(root);
+        setHeight(newRoot);
+
+        return newRoot;
     }
 
-    private boolean isLeftHeavy(AVLNode node){
+    private AVLNode rotateRight(AVLNode root){
+        var newRoot = root.leftChild;
+
+        root.leftChild = newRoot.rightChild;
+        newRoot.rightChild = root;
+
+        setHeight(root);
+        setHeight(newRoot);
+
+        return newRoot;
+    }
+
+    private void setHeight(AVLNode node){
+        node.height = Math.max(
+                height(node.leftChild),
+                height(node.rightChild)) + 1;
+    }
+
+    private boolean isLeftHeavy(AVLNode node) {
         return balanceFactor(node) > 1;
     }
 
-    private boolean isRightHeavy(AVLNode node){
-        return balanceFactor(node) < -1 ;
+    private boolean isRightHeavy(AVLNode node) {
+        return balanceFactor(node) < -1;
     }
 
-    private int balanceFactor(AVLNode node){
+    private int balanceFactor(AVLNode node) {
         return (node == null) ? 0 : height(node.leftChild) - height(node.rightChild);
     }
 
-    private int height(AVLNode node){
+    private int height(AVLNode node) {
         return (node == null) ? -1 : node.height;
     }
 }
