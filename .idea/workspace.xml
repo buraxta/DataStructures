@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b6e7530-39fb-4b81-a099-fca752a5e2c1" name="Changes" comment="AVL Tree - Height">
+    <list default="true" id="0b6e7530-39fb-4b81-a099-fca752a5e2c1" name="Changes" comment="AVL Tree - Balance Factory">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AVLTree/AVLTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AVLTree/AVLTree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +75,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670165567214</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="AVL Tree - Balance Factory">
+      <created>1670166314204</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670166314204</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -93,7 +101,8 @@
     <MESSAGE value="Hash Table" />
     <MESSAGE value="AVL Tree" />
     <MESSAGE value="AVL Tree - Height" />
-    <option name="LAST_COMMIT_MESSAGE" value="AVL Tree - Height" />
+    <MESSAGE value="AVL Tree - Balance Factory" />
+    <option name="LAST_COMMIT_MESSAGE" value="AVL Tree - Balance Factory" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
