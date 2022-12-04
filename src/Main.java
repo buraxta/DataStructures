@@ -1,13 +1,11 @@
-import HashTables.HashTable;
-
+import AVLTree.AVLTree;
 
 public class Main {
     public static void main(String[] args) {
-        HashTable table = new HashTable();
-        table.put(6, "A");
-        table.put(8, "B");
-        table.put(11, "C");
-        table.put(6, "A+");
+        var tree = new AVLTree();
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(30);
 
     }
 }
